@@ -1,6 +1,9 @@
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+
 .shown {
   font-weight: bold;
   cursor: pointer;
+  border-bottom: solid $gray-dark 1px;
 }
 
 .not-shown {
