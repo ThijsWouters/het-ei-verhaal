@@ -41,6 +41,13 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
+      react: {
+        files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
+        tasks: ['react'],
+        options: {
+          livereload: true
+        }
+      },
       jstest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['test:watch']
@@ -63,6 +70,7 @@ module.exports = function (grunt) {
         files: [
           '<%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
+          '.tmp/scripts/{,*/}*.js',
           '<%= config.app %>/images/{,*/}*'
         ]
       }
@@ -377,6 +385,16 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    react: {
+      files: {
+        expand: true,
+        cwd: '<%= config.app %>/scripts',
+        src: ['**/*.jsx'],
+        dest: '.tmp/scripts',
+        ext: '.js'
+      }
     }
   });
 
@@ -392,6 +410,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'react',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -422,6 +441,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'react',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
