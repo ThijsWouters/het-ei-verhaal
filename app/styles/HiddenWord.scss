@@ -1,0 +1,9 @@
+.shown {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.not-shown {
+  @extend .shown;
+  color: white;
+}
